@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CityShield 2050, kurgusal Nova Liman kentinin hastane, ulaşım, enerji, su ve haberleşme sistemleri için eğitim amaçlı siber güvenlik simülasyonudur.">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+  <title>CityShield 2050 | Güvenlik Paneli</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+
+  <header class="topbar">
+    <div class="app topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.svg" width="46" height="46" alt="">
+        <span class="brand-text">
+          <span class="brand-kicker">CityShield</span>
+          <span class="brand-name">2050</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Sayfalar">
+        <a href="index.html" aria-current="page">Panel</a>
+        <a href="tanitim.html">Tanıtım</a>
+      </nav>
+      <p class="clock">
+        <span id="clock">--:--:--</span>
+        <span class="clock-label">Yerel saat</span>
+      </p>
+    </div>
+  </header>
+
+  <main id="icerik" class="app layout">
+    <aside class="sidebar">
+      <section class="card gauge-card" aria-labelledby="gauge-heading">
+        <p class="live"><span class="live-dot" aria-hidden="true"></span> Simülasyon açık</p>
+        <h2 id="gauge-heading">Nova Liman</h2>
+        <p class="mini">Kurgusal kent</p>
+        <div class="gauge-wrap">
+          <svg id="gauge" class="gauge-svg" viewBox="0 0 120 120" role="img" aria-label="Kent hazırlığı">
+            <circle class="gauge-track" cx="60" cy="60" r="52"></circle>
+            <circle id="gauge-arc" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="gauge-copy">
+            <p class="gauge-kicker">Hazırlık</p>
+            <p id="gauge-value" class="gauge-value">—</p>
+          </div>
+        </div>
+        <p id="gauge-caption" class="help"></p>
+      </section>
+
+      <section aria-labelledby="systems-heading">
+        <h2 id="systems-heading">Altyapı sistemleri</h2>
+        <div id="system-list" class="system-list"></div>
+      </section>
+    </aside>
+
+    <div class="content">
+      <header class="page-intro">
+        <p class="eyebrow">Akıllı şehir tatbikatı</p>
+        <h1>Güvenlik kontrol paneli</h1>
+        <p class="slogan">Akıllı Şehirler, Güvenli Yarınlar.</p>
+        <p class="lede">Hastane, ulaşım, enerji, su ve haberleşme için kurgusal olay kaydı oluşturun. Risk puanı bu sayfada hesaplanır. Kayıtlar yalnızca bu tarayıcıda durur.</p>
+      </header>
+
+      <p id="notice" class="notice" role="status" hidden></p>
+
+      <section class="stats" aria-labelledby="stats-heading">
+        <h2 id="stats-heading" class="visually-hidden">Özet sayılar</h2>
+        <article class="stat">
+          <p class="stat-label">Kayıtlı olay</p>
+          <p id="stat-count" class="stat-value">—</p>
+        </article>
+        <article class="stat">
+          <p class="stat-label">Ortalama risk</p>
+          <p id="stat-avg" class="stat-value">—</p>
+        </article>
+        <article class="stat">
+          <p class="stat-label">Yüksek risk</p>
+          <p id="stat-high" class="stat-value">—</p>
+        </article>
+        <article class="stat">
+          <p class="stat-label">En çok etkilenen</p>
+          <p id="stat-system" class="stat-value stat-text">—</p>
+        </article>
+      </section>
+      <p class="legend">Risk bandı: 0–39 düşük, 40–69 orta, 70–100 yüksek. Kent hazırlığı ters yönde okunur; yüksek hazırlık daha iyi durumdur.</p>
+
+      <div class="workspace">
+        <form id="event-form" class="card form-card" autocomplete="off" novalidate>
+          <h2>Kurgusal olay</h2>
+          <p class="lede">Bu form gerçek bir saldırı bildirimi değildir. Kişisel veri yazmayın.</p>
+
+          <div class="field">
+            <label for="title">Olay başlığı <span class="req">zorunlu</span></label>
+            <input id="title" name="title" type="text" maxlength="80" lang="tr" autocomplete="off" spellcheck="true" required>
+            <p id="title-help" class="help">5–80 karakter. Harf, rakam ve temel noktalama.</p>
+            <p id="title-error" class="field-error" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="type">Olay türü <span class="req">zorunlu</span></label>
+            <select id="type" name="type" required></select>
+            <p id="type-help" class="help">Tür, puanın taban değerini belirler.</p>
+            <p id="type-error" class="field-error" role="alert"></p>
+          </div>
+
+          <div class="split">
+            <div class="field">
+              <label for="severity">Önem <span class="req">zorunlu</span></label>
+              <select id="severity" name="severity" required></select>
+              <p id="severity-help" class="help">Tatbikat içindeki aciliyet.</p>
+              <p id="severity-error" class="field-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="system">Etkilenen sistem <span class="req">zorunlu</span></label>
+              <select id="system" name="system" required></select>
+              <p id="system-help" class="help">Hastane en yüksek katsayıya sahiptir.</p>
+              <p id="system-error" class="field-error" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="note">Senaryo notu <span class="opt">isteğe bağlı</span></label>
+            <textarea id="note" name="note" rows="3" maxlength="240" lang="tr" autocomplete="off" spellcheck="true"></textarea>
+            <p id="note-help" class="help">En fazla 240 karakter. Gerçek kişi, hasta veya hesap bilgisi yazmayın.</p>
+            <p id="note-error" class="field-error" role="alert"></p>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="button primary">Simülasyonu kaydet</button>
+            <button type="button" class="button ghost" id="reset-form">Formu temizle</button>
+            <button type="button" class="button ghost" id="fill-sample">Örnek senaryo</button>
+          </div>
+
+          <button type="button" class="button texty" id="formula-toggle" aria-expanded="false" aria-controls="formula-panel">Puan nasıl hesaplanır?</button>
+          <div id="formula-panel" class="formula" hidden></div>
+        </form>
+
+        <section class="card result tone-idle" id="result" aria-labelledby="result-heading">
+          <h2 id="result-heading" tabindex="-1">Son analiz</h2>
+          <div id="result-body"></div>
+        </section>
+      </div>
+
+      <section class="card history" id="gecmis" aria-labelledby="history-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="history-heading" tabindex="-1">Olay geçmişi</h2>
+            <p id="history-count" class="help"></p>
+          </div>
+          <button type="button" class="button danger" id="clear-history" aria-expanded="false" aria-controls="clear-box">Geçmişi temizle</button>
+        </div>
+        <div id="clear-box" class="confirm-box" hidden>
+          <p>Kayıtlı simülasyonların tümü bu tarayıcıdan silinecek.</p>
+          <div class="actions">
+            <button type="button" class="button danger" id="clear-yes">Evet, sil</button>
+            <button type="button" class="button ghost" id="clear-no">Vazgeç</button>
+          </div>
+        </div>
+        <div id="filters" class="filters" role="group" aria-label="Sistem filtresi"></div>
+        <p id="history-empty" class="empty" hidden></p>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="app footer-inner">
+      <p>CityShield 2050 eğitim simülasyonudur. Gerçek saldırı başlatmaz, kişisel veri istemez ve bir kenti yönetmez.</p>
+      <a href="tanitim.html#guvenlik">Güvenlik notları</a>
+    </div>
+  </footer>
+
+  <noscript>
+    <p class="noscript">Bu panel JavaScript olmadan hesaplama yapmaz. Komut dosyası yalnızca bu sayfadadır; ağ isteği gönderilmez.</p>
+  </noscript>
+</body>
+</html>

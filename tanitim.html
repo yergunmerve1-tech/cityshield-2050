@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CityShield 2050 tanıtımı: kurgusal akıllı kent siber güvenlik simülasyonunun amacı, özellikleri, güvenlik sınırları ve teknolojileri.">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+  <title>CityShield 2050 | Tanıtım</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="doc-page">
+  <a class="skip-link" href="#icerik">İçeriğe geç</a>
+  <header class="topbar">
+    <div class="app topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.svg" width="46" height="46" alt="">
+        <span class="brand-text">
+          <span class="brand-kicker">CityShield</span>
+          <span class="brand-name">2050</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Sayfalar">
+        <a href="index.html">Panel</a>
+        <a href="tanitim.html" aria-current="page">Tanıtım</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="icerik" class="app layout">
+    <header class="doc-hero">
+      <p class="eyebrow">Eğitim simülasyonu</p>
+      <h1>CityShield 2050</h1>
+      <p class="slogan">Akıllı Şehirler, Güvenli Yarınlar.</p>
+      <p class="lede">Nova Liman adlı kurgusal bir kentte hastane, ulaşım, enerji, su ve haberleşme sistemlerinin güvenlik durumunu tartışmak için hazırlanmış statik bir kontrol panelidir. Gerçek bir kenti izlemez ve saldırı başlatmaz.</p>
+      <nav class="toc" aria-label="Tanıtım bölümleri">
+        <a href="#amac">Amaç</a>
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#guvenlik">Güvenlik</a>
+        <a href="#teknolojiler">Teknolojiler</a>
+        <a href="#fayda">Toplumsal fayda</a>
+        <a href="#demo">Demo</a>
+      </nav>
+    </header>
+
+    <div class="doc-grid">
+      <section class="card doc-block" id="amac">
+        <h2>Proje amacı</h2>
+        <p>Amaç, akıllı kent altyapılarının neden tek bir “güvenli” veya “güvensiz” etiketiyle anlatılamayacağını göstermektir. Her sistemin kendi hazırlık referansı vardır. Kullanıcının girdiği kurgusal olay; türüne, önemine ve etkilediği sisteme göre 0–100 arası bir risk puanı üretir.</p>
+        <p>Panel bir güvenlik operasyon merkezi değildir. Resmi ihbar hattı, envanter veya müdahale aracı yerine geçmez.</p>
+      </section>
+
+      <section class="card doc-block" id="ozellikler">
+        <h2>Özellikler</h2>
+        <ul>
+          <li>Beş altyapının referans hazırlığı ve, kayıt varsa, güncel durumu.</li>
+          <li>Kurgusal olay formu, örnek senaryo ve alan doğrulaması.</li>
+          <li>Açık risk formülü, düşük / orta / yüksek bandı ve sabit savunma önerileri.</li>
+          <li>Olay geçmişini görüntüleme, filtreleme, tek kayıt silme ve tümünü temizleme.</li>
+          <li>Kayıt sayısına, ortalama riske, yüksek risk adedine ve en çok etkilenen sisteme göre güncellenen özet.</li>
+          <li>Kayıtların tarayıcı LocalStorage alanında saklanması. Üst sınır 40 kayıttır.</li>
+        </ul>
+      </section>
+
+      <section class="card doc-block" id="guvenlik">
+        <h2>Güvenlik önlemleri</h2>
+        <p>Bu sayfa yalnızca gerçekten uygulanmış önlemleri anlatır. Ayrıntı ve bilinçli sınırlar <a href="SECURITY.md">SECURITY.md</a> dosyasındadır.</p>
+        <ul>
+          <li>Sunucu, hesap ve harici API yoktur. Sayfa <code>fetch</code> çağrısı yapmaz.</li>
+          <li>Kişisel veri alanı yoktur. Form, kişi adı veya hesap bilgisi istemez.</li>
+          <li>Başlık ve not; uzunluk, harf-rakam ve temel noktalama ile doğrulanır. <code>&lt;</code> ve <code>&gt;</code> kabul edilmez.</li>
+          <li>Kullanıcı metni <code>textContent</code> ve <code>createElement</code> ile basılır. <code>innerHTML</code> kullanılmaz.</li>
+          <li>Kayıttan okunan olay yeniden doğrulanır. Formülle uyuşmayan puan yok sayılır. Öneriler kayıttan değil, tür ve sistemden üretilir.</li>
+          <li>İçerik güvenlik politikası komut dosyasını ve stili aynı kaynakla sınırlar; bağlantı ve form gönderimini kapatır.</li>
+        </ul>
+        <p>LocalStorage şifrelenmez. Bu tarayıcıyi kullanan kişi kayıtları görebilir ve silebilir. Kimlik doğrulama yoktur çünkü uygulama tek kullanıcının kendi makinesinde çalışan bir simülasyondur.</p>
+      </section>
+
+      <section class="card doc-block" id="teknolojiler">
+        <h2>Teknolojiler</h2>
+        <ul>
+          <li>HTML5 anlamsal iskelet, form ve SVG göstergesi.</li>
+          <li>CSS3 ızgara, esnek kutu, özel özellikler ve azaltılmış hareket tercihi.</li>
+          <li>Harici kütüphane olmadan Vanilla JavaScript.</li>
+          <li>Tarayıcı LocalStorage.</li>
+          <li>Özgün <code>logo.svg</code> ve <code>favicon.svg</code>.</li>
+          <li>Derleme adımı yok. GitHub Pages kök dizinden yayınlanabilir.</li>
+        </ul>
+      </section>
+
+      <section class="card doc-block" id="fayda">
+        <h2>Toplumsal faydalar</h2>
+        <p>Panel, sınıf ve masa başı tatbikatlarda şu konuşmayı somutlaştırır: bir sensör uyarısı ile bir hastane kesintisi aynı puanı taşımak zorunda değildir. Su, enerji, ulaşım, haberleşme ve sağlık hizmeti ayrı ayrı izlenir; çünkü toplumdaki etkileri aynı değildir.</p>
+        <p>Puanın nasıl üretildiği gizlenmez. Katılımcı, düşük bir önem seçiminin her zaman düşük risk bandı vermediğini örneklerle görebilir. Bu, “tek bir kırmızı alarm” alışkanlığını sorgulatmak için yeterlidir.</p>
+        <p>Uygulama gerçek bir kentin siber direncini artırmaz. Faydası eğitim ve tartışmayla sınırlıdır. Senaryolar uydurmadır; gerçek kişi, hasta veya kurum verisi kullanılmaz.</p>
+      </section>
+
+      <section class="card doc-block" id="demo">
+        <h2>Demo</h2>
+        <p>Paneli açtığınızda beş sistem referans hazırlıkla görünür. Örnek senaryo düğmesi formu doldurur; kayıt ancak siz kaydet derseniz oluşur. Geçmiş bu tarayıcıda kalır, tanıtım sayfası veri toplamaz.</p>
+        <a class="cta" href="index.html">Kontrol panelini aç</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="app footer-inner">
+      <p>CityShield 2050 eğitim simülasyonudur. Gerçek saldırı başlatmaz, kişisel veri istemez ve bir kenti yönetmez.</p>
+      <a href="index.html">Panele dön</a>
+    </div>
+  </footer>
+</body>
+</html>
