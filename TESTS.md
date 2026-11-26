@@ -22,3 +22,22 @@ Ortam: yerel statik sunucu, `http://127.0.0.1:8765/`. Tarih: 26 Kasım 2026.
 | 12 | 41. kayıt | En fazla 40 kayıt kalır, uyarı eski kaydın düştüğünü söyler | Koşulmadı |
 
 Formül örnekleri kodla aynı kaynaktan panelde de listelenir. Onlar tarayıcıda ayrıca okunmadan burada doğrulanmış sayılmaz.
+## Canlı Uygulama Test Sonuçları
+
+Test tarihi: 26.11.2026
+Test ortamı: GitHub Pages
+
+| Test | Sonuç |
+|---|---|
+| Sayfanın açılması | Başarılı |
+| Örnek senaryo | Başarılı |
+| Olay kaydetme | Başarılı |
+| Risk puanı hesaplama | Başarılı |
+| Risk seviyesi belirleme | Başarılı |
+| Hazırlık puanı güncelleme | Başarılı |
+| Güvenlik önerileri | Başarılı |
+| LocalStorage kayıt kontrolü | Başarılı |
+| Boş form kontrolü | Başarılı |
+
+Toplam: 9 başarılı test.
+Diğer testler henüz doğrulanmamıştır.
